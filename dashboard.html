@@ -113,14 +113,15 @@
     </div>
 
     <!-- Header & Navigation -->
-    <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+    <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors shadow-sm">
+        <!-- Top Bar -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16 sm:h-20 gap-4">
-                <!-- Brand Group -->
-                <div class="flex items-center gap-3">
+            <div class="flex items-center justify-between h-16 sm:h-20 gap-3">
+                <!-- Brand Group (Guaranteed Never Squashed) -->
+                <div class="flex items-center gap-3 flex-shrink-0">
                     <a href="index.html" class="flex items-center gap-2.5 group">
-                        <img src="assets/logo-transparent.png" srcset="assets/logo-transparent.png 1x, assets/logo-hd.png 2x" alt="LYCEMIT Logo" class="brand-logo-img w-10 h-10 object-contain drop-shadow select-none group-hover:scale-105 transition">
-                        <div>
+                        <img src="assets/logo-transparent.png" srcset="assets/logo-transparent.png 1x, assets/logo-hd.png 2x" alt="LYCEMIT Logo" class="brand-logo-img w-10 h-10 object-contain drop-shadow select-none group-hover:scale-105 transition flex-shrink-0">
+                        <div class="flex-shrink-0 whitespace-nowrap">
                             <div class="flex items-center gap-1.5 leading-none">
                                 <span class="font-display font-extrabold text-base sm:text-lg tracking-tight text-slate-900 dark:text-white">LYCEMIT</span>
                                 <span class="text-slate-300 dark:text-slate-600 font-light">|</span>
@@ -131,29 +132,17 @@
                     </a>
                 </div>
 
-                <!-- Navigation Tabs -->
-                <nav class="hidden lg:flex items-center gap-1 bg-slate-100 dark:bg-slate-800/70 p-1.5 rounded-2xl text-xs font-bold text-slate-700 dark:text-slate-300">
-                    <a href="#overview" class="px-3 py-1.5 rounded-xl hover:bg-white dark:hover:bg-slate-900 transition hover:text-brand-600">Overview</a>
-                    <a href="#profile" class="px-3 py-1.5 rounded-xl hover:bg-white dark:hover:bg-slate-900 transition hover:text-brand-600">Detail About You</a>
-                    <a href="#batches" class="px-3 py-1.5 rounded-xl hover:bg-white dark:hover:bg-slate-900 transition hover:text-brand-600">My Batches</a>
-                    <a href="#available-batches" class="px-3 py-1.5 rounded-xl hover:bg-white dark:hover:bg-slate-900 transition hover:text-brand-600">Batches &amp; Teachers</a>
-                    <a href="#classes" class="px-3 py-1.5 rounded-xl hover:bg-white dark:hover:bg-slate-900 transition hover:text-brand-600">Your Classes</a>
-                    <a href="#attendance" class="px-3 py-1.5 rounded-xl hover:bg-white dark:hover:bg-slate-900 transition hover:text-brand-600">Attendance Tracker</a>
-                    <a href="#performance" class="px-3 py-1.5 rounded-xl hover:bg-white dark:hover:bg-slate-900 transition hover:text-brand-600">Performance Graph</a>
-                    <a href="#test-scores" class="px-3 py-1.5 rounded-xl hover:bg-white dark:hover:bg-slate-900 transition hover:text-brand-600">Test Scores</a>
-                </nav>
-
                 <!-- Action Group -->
-                <div class="flex items-center gap-2 sm:gap-3">
-                    <!-- Live Clock -->
+                <div class="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
+                    <!-- Live Clock (Hidden on small screens) -->
                     <div class="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-bold text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
                         <i class="fa-regular fa-clock text-brand-500"></i>
                         <span id="dashboardLiveClock">12:00:00 PM</span>
                     </div>
 
-                    <!-- Profile Switcher Dropdown (Demo Selector) -->
+                    <!-- Profile Switcher Dropdown (Dynamic for Logged In vs Demo) -->
                     <div class="relative">
-                        <select onchange="switchStudentPersona(this.value)" class="text-xs font-bold px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-500" title="Switch Student Persona">
+                        <select id="dashboardPersonaSelect" onchange="switchStudentPersona(this.value)" class="text-xs font-bold px-2.5 sm:px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-500 max-w-[170px] sm:max-w-[220px] truncate" title="Active Student Profile / Switch Persona">
                             <option value="aarav">👤 Aarav Sharma (10th CBSE)</option>
                             <option value="priya">👩‍⚕️ Priya Kumari (12th NEET)</option>
                             <option value="rohan">🧑‍🔬 Rohan Verma (9th Olympiad)</option>
@@ -161,23 +150,64 @@
                     </div>
 
                     <!-- Theme Toggle -->
-                    <button onclick="toggleDarkMode()" class="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 flex items-center justify-center transition" title="Toggle Dark/Light Mode">
+                    <button onclick="toggleDarkMode()" class="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center transition flex-shrink-0" title="Toggle Dark/Light Mode">
                         <i class="fa-solid fa-moon dark:hidden"></i>
                         <i class="fa-solid fa-sun hidden dark:inline"></i>
                     </button>
 
-                    <!-- Clerk Account & Profile Button -->
-                    <button data-auth-trigger onclick="openAuthModal('signin')" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-brand-500/10 hover:bg-brand-500 text-brand-600 dark:text-brand-400 hover:text-white transition flex items-center gap-1.5" title="Clerk Student Account">
-                        <i class="fa-solid fa-circle-user"></i>
-                        <span class="hidden sm:inline">Account</span>
-                    </button>
+                    <!-- Auth State Dynamic Container: Logged In Actions -->
+                    <div id="authLoggedInActions" class="flex items-center gap-2">
+                        <!-- Student Digital ID / Clerk Account Button -->
+                        <button id="dashboardAccountBtn" onclick="openStudentAccountModal()" class="px-3 sm:px-3.5 py-2 rounded-xl text-xs font-bold bg-brand-500/10 hover:bg-brand-500 text-brand-600 dark:text-brand-400 hover:text-white transition flex items-center gap-1.5 flex-shrink-0" title="Student Profile & Account">
+                            <i class="fa-solid fa-circle-user"></i>
+                            <span class="hidden sm:inline" id="dashboardAccountLabel">Account</span>
+                        </button>
 
-                    <!-- Logout Button -->
-                    <button onclick="logoutStudent()" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-rose-500/10 hover:bg-rose-500 text-rose-600 dark:text-rose-400 hover:text-white transition flex items-center gap-1.5" title="Sign Out">
-                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                        <span class="hidden sm:inline">Sign Out</span>
-                    </button>
+                        <!-- Logout Button -->
+                        <button onclick="logoutStudent()" class="px-3 sm:px-3.5 py-2 rounded-xl text-xs font-bold bg-rose-500/10 hover:bg-rose-500 text-rose-600 dark:text-rose-400 hover:text-white transition flex items-center gap-1.5 flex-shrink-0" title="Sign Out">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            <span class="hidden sm:inline">Sign Out</span>
+                        </button>
+                    </div>
+
+                    <!-- Auth State Dynamic Container: Logged Out Actions -->
+                    <div id="authLoggedOutActions" class="hidden items-center gap-2">
+                        <button onclick="openAuthModal('signin')" class="px-3.5 sm:px-4 py-2 rounded-xl text-xs font-bold bg-brand-600 hover:bg-brand-700 text-white shadow-md shadow-brand-600/30 transition flex items-center gap-1.5 flex-shrink-0" title="Sign In to Student Portal">
+                            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                            <span>Sign In</span>
+                        </button>
+                    </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Sub-Navigation Tab Bar (Smooth horizontal scroll on any viewport) -->
+        <div class="border-t border-slate-200/80 dark:border-slate-800 bg-slate-50/90 dark:bg-slate-900/90 px-4 sm:px-6 lg:px-8 py-2 overflow-x-auto no-scrollbar">
+            <div class="max-w-7xl mx-auto flex items-center gap-1 sm:gap-2 min-w-max text-xs font-bold text-slate-600 dark:text-slate-300">
+                <a href="#overview" class="px-3 py-1.5 rounded-xl hover:bg-white dark:hover:bg-slate-800 transition hover:text-brand-600 dark:hover:text-brand-400 flex items-center gap-1.5">
+                    <i class="fa-solid fa-gauge-high text-brand-500"></i> Overview
+                </a>
+                <a href="#profile" class="px-3 py-1.5 rounded-xl hover:bg-white dark:hover:bg-slate-800 transition hover:text-brand-600 dark:hover:text-brand-400 flex items-center gap-1.5">
+                    <i class="fa-solid fa-user-graduate text-indigo-500"></i> Detail About You
+                </a>
+                <a href="#batches" class="px-3 py-1.5 rounded-xl hover:bg-white dark:hover:bg-slate-800 transition hover:text-brand-600 dark:hover:text-brand-400 flex items-center gap-1.5">
+                    <i class="fa-solid fa-graduation-cap text-emerald-500"></i> My Batches
+                </a>
+                <a href="#available-batches" class="px-3 py-1.5 rounded-xl hover:bg-white dark:hover:bg-slate-800 transition hover:text-brand-600 dark:hover:text-brand-400 flex items-center gap-1.5">
+                    <i class="fa-solid fa-chalkboard-user text-amber-500"></i> Batches &amp; Teachers
+                </a>
+                <a href="#classes" class="px-3 py-1.5 rounded-xl hover:bg-white dark:hover:bg-slate-800 transition hover:text-brand-600 dark:hover:text-brand-400 flex items-center gap-1.5">
+                    <i class="fa-solid fa-video text-rose-500"></i> Your Classes
+                </a>
+                <a href="#attendance" class="px-3 py-1.5 rounded-xl hover:bg-white dark:hover:bg-slate-800 transition hover:text-brand-600 dark:hover:text-brand-400 flex items-center gap-1.5">
+                    <i class="fa-solid fa-clipboard-user text-teal-500"></i> Attendance Tracker
+                </a>
+                <a href="#performance" class="px-3 py-1.5 rounded-xl hover:bg-white dark:hover:bg-slate-800 transition hover:text-brand-600 dark:hover:text-brand-400 flex items-center gap-1.5">
+                    <i class="fa-solid fa-chart-line text-purple-500"></i> Performance Graph
+                </a>
+                <a href="#test-scores" class="px-3 py-1.5 rounded-xl hover:bg-white dark:hover:bg-slate-800 transition hover:text-brand-600 dark:hover:text-brand-400 flex items-center gap-1.5">
+                    <i class="fa-solid fa-award text-yellow-500"></i> Test Scores
+                </a>
             </div>
         </div>
     </header>
@@ -908,7 +938,7 @@
         <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-5">
             <div class="flex items-center justify-between">
                 <h3 class="font-display font-extrabold text-lg text-slate-900 dark:text-white">Campus Digital ID &amp; QR Pass</h3>
-                <button onclick="document.getElementById('digitalIdModal').classList.add('hidden')" class="w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-500 flex items-center justify-center">
+                <button onclick="closeModal('digitalIdModal')" class="w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-900 dark:hover:text-white flex items-center justify-center transition" aria-label="Close Digital ID">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>

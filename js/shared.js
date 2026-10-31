@@ -1285,6 +1285,22 @@ const LYCEMIT_PLAYSTORE_URL = 'https://play.google.com/store/search?q=lycemit&c=
         }
 
         // Modals Control
+        function lockModalScroll() {
+            document.body.classList.add('modal-scroll-locked');
+        }
+
+        function unlockModalScroll() {
+            document.body.classList.remove('modal-scroll-locked');
+        }
+
+        function openModal(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.classList.remove('hidden');
+                lockModalScroll();
+            }
+        }
+
         function closeModal(id) {
             const el = document.getElementById(id);
             if (el) el.classList.add('hidden');
@@ -1308,15 +1324,21 @@ const LYCEMIT_PLAYSTORE_URL = 'https://play.google.com/store/search?q=lycemit&c=
             const anyActiveModal = document.querySelector('.fixed:not(.hidden)[id$="Modal"]');
             if (!anyActiveModal) {
                 document.body.style.overflow = '';
+                unlockModalScroll();
             }
         }
+
+        window.openModal = openModal;
+        window.closeModal = closeModal;
+        window.lockModalScroll = lockModalScroll;
+        window.unlockModalScroll = unlockModalScroll;
 
         function openAuthModal(mode) {
             const modal = document.getElementById('authModal');
             if (!modal) return;
 
             modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
+            lockModalScroll();
             if (window.LycemitClerk && window.LycemitClerk.ready) {
                 window.LycemitClerk.show(mode || 'signin');
                 return;
@@ -1734,6 +1756,10 @@ function updateAuthTrigger() {
             ? () => window.Clerk.openUserProfile()
             : () => openAuthModal('signin');
     });
+
+    if (typeof syncDashboardAuthButtons === 'function') {
+        syncDashboardAuthButtons();
+    }
 
     if (signedIn) {
         if (window.Clerk && window.Clerk.user) {
@@ -2157,7 +2183,7 @@ document.addEventListener('DOMContentLoaded', initBrandLogos, { once: true });
 // Global Modal Backdrop Dismiss & Video Modal Helper
 document.addEventListener('DOMContentLoaded', function () {
     /* videoModalBackdropListener */
-    ['telegramScannerModal', 'courseModal', 'authModal', 'videoModal', 'scheduleModal', 'appModal', 'legalModal', 'appScreenshotModal'].forEach(function (id) {
+    ['telegramScannerModal', 'courseModal', 'authModal', 'videoModal', 'scheduleModal', 'appModal', 'legalModal', 'appScreenshotModal', 'digitalIdModal', 'batchSwitchModal'].forEach(function (id) {
         const el = document.getElementById(id);
         if (el) {
             el.addEventListener('click', function (e) {

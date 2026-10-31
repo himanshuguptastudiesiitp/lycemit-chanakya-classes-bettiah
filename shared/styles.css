@@ -11,6 +11,10 @@ html, body {
     text-rendering: optimizeLegibility;
 }
 
+body.modal-scroll-locked {
+    overflow: hidden;
+}
+
 #authModal {
     overflow-y: auto;
     overscroll-behavior: contain;

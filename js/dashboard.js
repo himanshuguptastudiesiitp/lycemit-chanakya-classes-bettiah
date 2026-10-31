@@ -676,11 +676,16 @@ function initStudentDashboard() {
         if (stored) {
             const parsed = JSON.parse(stored);
             if (parsed.name && parsed.name.toLowerCase().includes('priya')) {
-                currentPersona = STUDENT_PERSONAS.priya;
+                currentPersona = { ...STUDENT_PERSONAS.priya };
             } else if (parsed.name && parsed.name.toLowerCase().includes('rohan')) {
-                currentPersona = STUDENT_PERSONAS.rohan;
+                currentPersona = { ...STUDENT_PERSONAS.rohan };
             } else if (parsed.name) {
-                currentPersona.name = parsed.name;
+                currentPersona = {
+                    ...STUDENT_PERSONAS.aarav,
+                    name: parsed.name,
+                    email: parsed.email || STUDENT_PERSONAS.aarav.email,
+                    avatar: parsed.avatar || STUDENT_PERSONAS.aarav.avatar
+                };
                 if (parsed.targetClass) currentPersona.targetExam = parsed.targetClass;
             }
         }
@@ -693,11 +698,15 @@ function initStudentDashboard() {
             if (syncClerkStudentPersona()) {
                 renderProfileHeader();
             }
+            syncDashboardAuthButtons();
+            updatePersonaDropdown();
         });
     }
 
     renderDashboardAll();
     setupDashboardClock();
+    syncDashboardAuthButtons();
+    updatePersonaDropdown();
 }
 
 function syncClerkStudentPersona() {
@@ -717,15 +726,82 @@ function syncClerkStudentPersona() {
     return changed;
 }
 
+function updatePersonaDropdown() {
+    const sel = document.getElementById('dashboardPersonaSelect');
+    if (!sel) return;
+
+    const isCustom = (
+        currentPersona.name !== STUDENT_PERSONAS.aarav.name &&
+        currentPersona.name !== STUDENT_PERSONAS.priya.name &&
+        currentPersona.name !== STUDENT_PERSONAS.rohan.name
+    );
+
+    if (isCustom) {
+        sel.innerHTML = `
+            <option value="custom" selected>🎓 ${currentPersona.name} (Active)</option>
+            <option value="aarav">👤 Demo: Aarav Sharma (10th CBSE)</option>
+            <option value="priya">👩‍⚕️ Demo: Priya Kumari (12th NEET)</option>
+            <option value="rohan">🧑‍🔬 Demo: Rohan Verma (9th Olympiad)</option>
+        `;
+    } else {
+        sel.innerHTML = `
+            <option value="aarav" ${currentPersona.name === STUDENT_PERSONAS.aarav.name ? 'selected' : ''}>👤 Aarav Sharma (10th CBSE)</option>
+            <option value="priya" ${currentPersona.name === STUDENT_PERSONAS.priya.name ? 'selected' : ''}>👩‍⚕️ Priya Kumari (12th NEET)</option>
+            <option value="rohan" ${currentPersona.name === STUDENT_PERSONAS.rohan.name ? 'selected' : ''}>🧑‍🔬 Rohan Verma (9th Olympiad)</option>
+        `;
+    }
+}
+
 function switchStudentPersona(personaKey) {
+    if (personaKey === 'custom') {
+        initStudentDashboard();
+        return;
+    }
     if (STUDENT_PERSONAS[personaKey]) {
-        currentPersona = STUDENT_PERSONAS[personaKey];
+        currentPersona = { ...STUDENT_PERSONAS[personaKey] };
         renderDashboardAll();
+        updatePersonaDropdown();
         if (typeof showToast === 'function') {
             showToast(`Switched profile to ${currentPersona.name}`);
         }
     }
 }
+
+function syncDashboardAuthButtons() {
+    const loggedInActions = document.getElementById('authLoggedInActions');
+    const loggedOutActions = document.getElementById('authLoggedOutActions');
+    const accountLabel = document.getElementById('dashboardAccountLabel');
+    if (!loggedInActions || !loggedOutActions) return;
+
+    const hasClerkUser = Boolean(window.Clerk && window.Clerk.user);
+    const hasLocalSession = Boolean(localStorage.getItem('lycemit_student_session'));
+    const isLoggedIn = hasClerkUser || hasLocalSession;
+
+    if (isLoggedIn) {
+        loggedInActions.classList.remove('hidden');
+        loggedInActions.classList.add('flex');
+        loggedOutActions.classList.add('hidden');
+        loggedOutActions.classList.remove('flex');
+        if (accountLabel) {
+            accountLabel.textContent = hasClerkUser ? 'Account' : 'Digital ID';
+        }
+    } else {
+        loggedInActions.classList.add('hidden');
+        loggedInActions.classList.remove('flex');
+        loggedOutActions.classList.remove('hidden');
+        loggedOutActions.classList.add('flex');
+    }
+}
+window.syncDashboardAuthButtons = syncDashboardAuthButtons;
+
+function openStudentAccountModal() {
+    if (window.Clerk && window.Clerk.user) {
+        window.Clerk.openUserProfile();
+    } else {
+        openDigitalIdModal();
+    }
+}
+window.openStudentAccountModal = openStudentAccountModal;
 
 // =========================================================================
 // 4. COMPLETE RENDER PIPELINE
@@ -1444,22 +1520,47 @@ function renderTestScoresSection() {
 // 5. ACTION HANDLERS & MODALS
 // =========================================================================
 function openDigitalIdModal() {
-    const modal = document.getElementById('digitalIdModal');
-    if (modal) modal.classList.remove('hidden');
+    if (typeof openModal === 'function') {
+        openModal('digitalIdModal');
+    } else {
+        const modal = document.getElementById('digitalIdModal');
+        if (modal) modal.classList.remove('hidden');
+    }
+}
+
+function closeDigitalIdModal() {
+    if (typeof closeModal === 'function') {
+        closeModal('digitalIdModal');
+    } else {
+        const modal = document.getElementById('digitalIdModal');
+        if (modal) modal.classList.add('hidden');
+    }
 }
 
 function openBatchSwitchModal(batchId, batchName) {
     const modal = document.getElementById('batchSwitchModal');
     if (!modal) return;
-    document.getElementById('modalTargetBatchName').textContent = batchName;
-    document.getElementById('modalBatchStudentName').value = currentPersona.name;
-    document.getElementById('modalBatchStudentRoll').value = currentPersona.rollNo;
-    modal.classList.remove('hidden');
+    const nameEl = document.getElementById('modalTargetBatchName');
+    const studentNameEl = document.getElementById('modalBatchStudentName');
+    const rollEl = document.getElementById('modalBatchStudentRoll');
+    if (nameEl) nameEl.textContent = batchName;
+    if (studentNameEl) studentNameEl.value = currentPersona.name;
+    if (rollEl) rollEl.value = currentPersona.rollNo;
+
+    if (typeof openModal === 'function') {
+        openModal('batchSwitchModal');
+    } else {
+        modal.classList.remove('hidden');
+    }
 }
 
 function closeBatchSwitchModal() {
-    const modal = document.getElementById('batchSwitchModal');
-    if (modal) modal.classList.add('hidden');
+    if (typeof closeModal === 'function') {
+        closeModal('batchSwitchModal');
+    } else {
+        const modal = document.getElementById('batchSwitchModal');
+        if (modal) modal.classList.add('hidden');
+    }
 }
 
 function submitBatchSwitchRequest(e) {
