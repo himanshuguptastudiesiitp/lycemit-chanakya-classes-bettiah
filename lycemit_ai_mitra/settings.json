@@ -1,0 +1,33 @@
+{
+  "project_name": "LYCEMIT AI MITRA",
+  "project_name_hi": "LYCEMIT AI मित्र",
+  "version": "1.0.0",
+  "organization": "Chanakya Classes Bettiah & Lycemit",
+  "director": "Manmit Shrivastva (@msmanmit)",
+  "contact": {
+    "phone": "+917979724568",
+    "whatsapp": "917979724568",
+    "telegram": "msmanmit",
+    "address": "Supriya Cinema Road, Bettiah, West Champaran, Bihar 845438",
+    "geo": {
+      "latitude": 26.8013,
+      "longitude": 84.5029
+    },
+    "maps_url": "https://www.google.co.in/maps/place/Chanakya+Classes+by+Manmit",
+    "app_url": "https://play.google.com/store/apps/details?id=com.lycemit.app"
+  },
+  "supported_languages": ["en", "hi"],
+  "default_language": "en",
+  "voice": {
+    "enabled": true,
+    "speech_rate": 150,
+    "volume": 0.9,
+    "default_gender": "female"
+  },
+  "agent": {
+    "max_steps": 5,
+    "temperature": 0.3,
+    "auto_execute_tools": true
+  }
+}
+

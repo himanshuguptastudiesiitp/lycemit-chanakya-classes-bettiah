@@ -1,0 +1,584 @@
+/* STABLE VIEWPORT & PREVENT HORIZONTAL / SCROLLBAR JITTER ON ALL DEVICES */
+html {
+    scrollbar-gutter: stable;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+#authModal {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.auth-modal-panel {
+    max-height: min(92vh, 760px);
+    overflow-y: auto;
+    contain: layout style;
+}
+
+.auth-modal-panel #clerkSignInMount,
+.auth-modal-panel #clerkSignUpMount {
+    width: 100%;
+    min-height: 380px;
+}
+
+/* LEFT-ALIGNED STRICT NAVBAR STYLING */
+.navbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 12px;
+    height: 72px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.nav-brand-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+/* LEFT THREE-LINER MENU BUTTON */
+.left-sidebar-toggle-btn {
+    height: 40px;
+    padding: 0 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.left-sidebar-toggle-btn:hover {
+    transform: scale(1.02);
+}
+
+/* LEFT QUICK-VIEW ACCESS SIDEBAR DRAWER */
+.left-sidebar-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 330px;
+    max-width: 86vw;
+    background: #ffffff;
+    z-index: 70;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+    transform: translateX(-100%);
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.dark .left-sidebar-drawer {
+    background: #0f172a;
+    border-right: 1px solid #1e293b;
+}
+
+.left-sidebar-drawer.open {
+    transform: translateX(0);
+}
+
+.left-sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(4px);
+    z-index: 65;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+.left-sidebar-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Custom Scrollbar & Scanner Animations */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #229ED9;
+        }
+        .glass-card {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+        .animate-float {
+            animation: floatSlow 4s ease-in-out infinite;
+        }
+        @keyframes scanLaser {
+            0% { top: 8%; opacity: 0.9; }
+            50% { top: 88%; opacity: 1; }
+            100% { top: 8%; opacity: 0.9; }
+        }
+        .scanner-laser {
+            position: absolute;
+            left: 6%;
+            right: 6%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #229ED9, #38bdf8, #229ED9, transparent);
+            box-shadow: 0 0 12px 2px rgba(34, 158, 217, 0.85);
+            border-radius: 999px;
+            animation: scanLaser 2.8s ease-in-out infinite;
+            pointer-events: none;
+        }
+        .qr-corner {
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            border-color: #229ED9;
+            pointer-events: none;
+        }
+
+        /* STRICT FULL-SCREEN SINGLE-LINE ICON & NAVBAR ALIGNMENT FIXES */
+        
+        .nav-links-row {
+            display: none;
+            align-items: center;
+            flex-wrap: nowrap;
+            gap: 4px;
+        }
+        @media (min-width: 1024px) {
+            .nav-links-row {
+                display: flex;
+            }
+        }
+        .nav-link-item {
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            height: 38px;
+            padding: 0 12px;
+            border-radius: 10px;
+            font-size: 13.5px;
+            font-weight: 600;
+            line-height: 1;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+        .nav-action-btn {
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+        .nav-action-btn svg,
+        .nav-action-btn i,
+        .icon-box-fixed svg,
+        .icon-box-fixed i {
+            width: 18px;
+            height: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+        .social-icon-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            overflow: visible;
+        }
+        .social-icon-btn {
+            width: 42px;
+            height: 42px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            flex-shrink: 0;
+            line-height: 1;
+            transition: all 0.2s ease;
+        }
+        .social-icon-btn svg,
+        .social-icon-btn i {
+            width: 18px;
+            height: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+        .channel-pill-btn {
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 0 14px;
+            border-radius: 10px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            font-size: 12.5px;
+            font-weight: 700;
+            line-height: 1;
+        }
+        .stats-strip-grid {
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 16px;
+            align-items: stretch;
+        }
+        @media (min-width: 640px) {
+            .stats-strip-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+        @media (min-width: 1024px) {
+            .stats-strip-grid {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+            }
+        }
+        .stat-icon-square {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+/* =========================================================================
+   7. BRAND LOGO HD RENDERING & PRELOADER (SLOW NETWORK SPLASH)
+   ========================================================================= */
+.brand-logo-img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    object-fit: contain;
+}
+
+#sitePreloader {
+    transition: opacity 0.2s ease-out, visibility 0.2s ease-out;
+    pointer-events: none !important; /* Instant non-blocking: never traps clicks */
+}
+
+#sitePreloader.preloader-hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    display: none !important;
+}
+
+/* Professional Micro-Interactions for Buttons */
+.hero-cta-btn {
+    transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s ease !important;
+}
+.hero-cta-btn:hover {
+    transform: translateY(-2.5px) scale(1.02) !important;
+}
+.hero-cta-btn:active {
+    transform: translateY(0px) scale(0.98) !important;
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow: 0 0 25px rgba(37, 99, 235, 0.4), 0 0 50px rgba(236, 72, 153, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(37, 99, 235, 0.7), 0 0 70px rgba(245, 158, 11, 0.4);
+    }
+}
+
+.logo-glow-pulse {
+    animation: pulseGlow 3s infinite ease-in-out;
+}
+
+/* =========================================================================
+   8. RUNNING STORIES & REELS STYLING
+   ========================================================================= */
+/* Stories Avatar Ring (Instagram style) */
+.story-avatar-ring {
+    position: relative;
+    padding: 3px;
+    border-radius: 9999px;
+    background: linear-gradient(45deg, #f59e0b, #ec4899, #8b5cf6, #3b82f6);
+    background-size: 300% 300%;
+    animation: storyGradientShift 4s ease infinite;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.story-avatar-ring:hover {
+    transform: scale(1.06);
+    box-shadow: 0 8px 24px -4px rgba(236, 72, 153, 0.4);
+}
+
+@keyframes storyGradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Story Reel Phone Mockup Card */
+.story-reel-card {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    background-color: #020617;
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.story-reel-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 28px 50px -15px rgba(37, 99, 235, 0.35), 0 0 0 2px rgba(96, 165, 250, 0.4);
+}
+
+.story-video-embed {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background: transparent;
+    transition: transform 0.4s ease;
+}
+
+/* Featured YouTube Short Interactive Facade Player */
+#featuredShortContainer {
+    position: relative;
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#featuredShortContainer:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 28px 50px -15px rgba(225, 29, 72, 0.35), 0 0 0 2px rgba(244, 63, 94, 0.5);
+}
+
+#featuredShortPlayOverlay .w-16 {
+    animation: shortPulseGlow 2.5s infinite;
+}
+
+@keyframes shortPulseGlow {
+    0%, 100% {
+        box-shadow: 0 0 25px rgba(225, 29, 72, 0.6);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(225, 29, 72, 0.9);
+        transform: scale(1.06);
+    }
+}
+
+.story-reel-card:hover .story-video-embed {
+    transform: scale(1.02);
+}
+
+/* Aspect ratio 9:16 for portrait video reel */
+.aspect-story {
+    aspect-ratio: 9 / 16;
+}
+
+/* Story Viewer Fullscreen Modal */
+#storyViewerModal {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+.story-progress-track {
+    height: 3px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 9999px;
+    overflow: hidden;
+    position: relative;
+}
+
+.story-progress-fill {
+    height: 100%;
+    background: #ffffff;
+    width: 0%;
+    border-radius: 9999px;
+    transition: width 0.1s linear;
+}
+
+
+/* =========================================================================
+   ADVANCED 3D RENDERING MOTION & DEPTH SYSTEM
+   ========================================================================= */
+
+/* 3D Perspective Scene Container */
+.motion-3d-scene {
+    perspective: 1200px;
+    perspective-origin: center center;
+    transform-style: preserve-3d;
+}
+
+/* Interactive 3D Tilt Card Base - Jitter-Free & Anti-Shivering */
+.motion-3d-card {
+    position: relative;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px);
+    transition: transform 0s, box-shadow 0.25s ease;
+    will-change: transform;
+}
+
+.motion-3d-card.resting {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease !important;
+}
+
+/* Dynamic Specular Lighting Glare */
+.motion-3d-glare {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: radial-gradient(circle 320px at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0.06) 50%, transparent 75%);
+    opacity: var(--glare-opacity, 0);
+    mix-blend-mode: overlay;
+    transition: opacity 0.3s ease;
+    z-index: 25;
+}
+
+/* 3D Depth Layer Popping */
+.motion-3d-pop {
+    transform: translateZ(28px);
+    transform-style: preserve-3d;
+    transition: transform 0.25s ease;
+}
+
+.motion-3d-pop-lg {
+    transform: translateZ(48px);
+    transform-style: preserve-3d;
+    transition: transform 0.25s ease;
+}
+
+/* 3D Book Isometric Perspective */
+.book-3d-perspective {
+    perspective: 1400px;
+    transform-style: preserve-3d;
+}
+
+.book-3d-cover {
+    transform-style: preserve-3d;
+    transform: rotateY(-8deg) rotateX(4deg) translateZ(12px);
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s ease;
+    box-shadow: -18px 24px 40px -10px rgba(0, 0, 0, 0.38), 0 0 25px 0 rgba(245, 158, 11, 0.15);
+    position: relative;
+    will-change: transform;
+}
+
+.book-3d-cover:hover {
+    transform: rotateY(-2deg) rotateX(1deg) translateZ(36px) scale(1.02);
+    box-shadow: -12px 32px 55px -12px rgba(0, 0, 0, 0.45), 0 0 40px 2px rgba(245, 158, 11, 0.32);
+}
+
+/* 3D Phone Mockup Showcase */
+.phone-mockup-3d {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s ease;
+    will-change: transform;
+}
+
+.phone-mockup-3d:hover {
+    transform: translateY(-10px) rotateY(-4deg) rotateX(3deg) translateZ(28px) scale(1.02);
+    box-shadow: 0 25px 50px -12px rgba(37, 99, 235, 0.22);
+}
+
+@keyframes floatDevice3D {
+    0%, 100% {
+        transform: translateY(0px) rotateY(0deg) rotateX(0deg);
+    }
+    50% {
+        transform: translateY(-8px) rotateY(-3deg) rotateX(2deg);
+    }
+}
+
+.animate-float-device {
+    animation: floatDevice3D 5.5s ease-in-out infinite;
+}
+
+/* 3D Floating Badges with Z-Depth */
+@keyframes floatBadge3D {
+    0%, 100% {
+        transform: translateZ(42px) translateY(0px) rotateZ(0deg);
+    }
+    50% {
+        transform: translateZ(56px) translateY(-7px) rotateZ(1.5deg);
+    }
+}
+
+.animate-badge-3d {
+    animation: floatBadge3D 4.2s ease-in-out infinite;
+}
+
+/* 3D Floating Geometry / Particle Canvas */
+#hero3dCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* 3D Ambient Card Glow on Hover */
+.motion-3d-glow {
+    position: relative;
+}
+
+.motion-3d-glow::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(37, 99, 235, 0.25), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.motion-3d-glow:hover::after {
+    opacity: 1;
+}

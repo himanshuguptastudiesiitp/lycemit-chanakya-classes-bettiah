@@ -1,0 +1,13 @@
+.git
+.github
+.agents
+.system_generated
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache
+*.log
+scratch/
+test_*.py
+update_html_defer.js

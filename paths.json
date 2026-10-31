@@ -1,0 +1,108 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "project_name": "Chanakya Classes Bettiah & LYCEMIT",
+  "local_workspace_root": "D:\\Desktop\\CHANKYA",
+  "production_base_url": "https://lycemit.com",
+  "routes": {
+    "home": "/",
+    "home_section": "/sections/home.html",
+    "courses": "/sections/courses.html",
+    "study_material": "/sections/study-material.html",
+    "videos": "/sections/videos.html",
+    "reviews": "/sections/reviews.html",
+    "contact": "/sections/contact.html",
+    "telegram": "/sections/telegram.html"
+  },
+  "files": {
+    "html": [
+      "index.html",
+      "sections/home.html",
+      "sections/courses.html",
+      "sections/study-material.html",
+      "sections/videos.html",
+      "sections/reviews.html",
+      "sections/contact.html",
+      "sections/telegram.html"
+    ],
+    "javascript": [
+      "js/shared.js",
+      "js/ai-mitra.js",
+      "js/clerk-config.js",
+      "update_html_defer.js"
+    ],
+    "css": [
+      "shared/styles.css",
+      "shared/ai-mitra.css"
+    ],
+    "documentation": [
+      "README.md",
+      "ARCHITECTURE.md",
+      "PROJECT_PATHS.md",
+      "LICENSE"
+    ],
+    "seo_and_crawling": [
+      "sitemap.xml",
+      "robots.txt"
+    ],
+    "python_ai_package": {
+      "root": "lycemit_ai_mitra",
+      "settings": "lycemit_ai_mitra/settings.json",
+      "requirements": "lycemit_ai_mitra/requirements.txt",
+      "modules": [
+        "lycemit_ai_mitra/src/__init__.py",
+        "lycemit_ai_mitra/src/main.py",
+        "lycemit_ai_mitra/src/chatbot.py",
+        "lycemit_ai_mitra/src/agent.py",
+        "lycemit_ai_mitra/src/tools.py",
+        "lycemit_ai_mitra/src/voice.py",
+        "lycemit_ai_mitra/src/multilingual.py",
+        "lycemit_ai_mitra/src/utils.py"
+      ],
+      "tests": [
+        "lycemit_ai_mitra/tests/test_chatbot.py",
+        "lycemit_ai_mitra/tests/test_agent.py",
+        "lycemit_ai_mitra/tests/test_multilingual.py"
+      ]
+    },
+    "assets": {
+      "branding": [
+        "assets/favicon.png",
+        "assets/logo.png",
+        "assets/logo-hd.png",
+        "assets/logo-transparent.png"
+      ],
+      "educator_portraits": [
+        "assets/manmit_shrivastva.jpg",
+        "assets/manmit_shrivastva_circle.png",
+        "assets/manmit_shrivastva_headshot.jpg",
+        "assets/manmit_shrivastva_portrait.png",
+        "assets/manmit_avatar.png"
+      ],
+      "stories_videos": [
+        "assets/stories/mari_chooriyan.mp4",
+        "assets/stories/stories_we_celebrate.mp4"
+      ],
+      "books": [
+        "assets/books/chanakya_books_combo_showcase.jpg",
+        "assets/books/book_science_fast_track.jpg",
+        "assets/books/book_maths_fast_track.jpg",
+        "assets/books/book_sst_fast_track.jpg",
+        "assets/books/book_concept_map_combined.jpg"
+      ],
+      "news": [
+        "assets/news/dainik_jagran_cbse_toppers_2023.jpg",
+        "assets/news/dainik_jagran_cbse_toppers_2023_hd.jpg",
+        "assets/news/dainik_jagran_kavi_sammelan_chanakya.jpg",
+        "assets/news/chanakya_powered_by_clipping.jpg"
+      ],
+      "app_features": [
+        "assets/app-features/feature1_chanakya_online.jpg",
+        "assets/app-features/feature2_premium_live_class.jpg",
+        "assets/app-features/feature3_updated_notes.jpg",
+        "assets/app-features/feature4_weekly_test.jpg",
+        "assets/app-features/feature5_device_matters.jpg"
+      ]
+    }
+  }
+}
+

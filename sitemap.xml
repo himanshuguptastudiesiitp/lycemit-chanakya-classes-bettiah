@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+    <!-- 1. Home / Main Unified Portal -->
+    <url>
+        <loc>https://lycemit.com/</loc>
+        <lastmod>2026-10-30</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- 2. Home & About Section -->
+    <url>
+        <loc>https://lycemit.com/sections/home.html</loc>
+        <lastmod>2026-10-30</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
+
+    <!-- 3. Courses & Offline Classroom Batches -->
+    <url>
+        <loc>https://lycemit.com/sections/courses.html</loc>
+        <lastmod>2026-10-30</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.95</priority>
+    </url>
+
+    <!-- 4. Free Study Material, NCERT Notes & Book Kits -->
+    <url>
+        <loc>https://lycemit.com/sections/study-material.html</loc>
+        <lastmod>2026-10-30</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.90</priority>
+    </url>
+
+    <!-- 5. Free Video Lectures, Live Streams & Shorts -->
+    <url>
+        <loc>https://lycemit.com/sections/videos.html</loc>
+        <lastmod>2026-10-30</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.85</priority>
+    </url>
+
+    <!-- 6. Student Reviews & Testimonials -->
+    <url>
+        <loc>https://lycemit.com/sections/reviews.html</loc>
+        <lastmod>2026-10-30</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.80</priority>
+    </url>
+
+    <!-- 7. Contact Info & Offline Admission Inquiry -->
+    <url>
+        <loc>https://lycemit.com/sections/contact.html</loc>
+        <lastmod>2026-10-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.85</priority>
+    </url>
+
+    <!-- 8. Telegram Community & QR Hub -->
+    <url>
+        <loc>https://lycemit.com/sections/telegram.html</loc>
+        <lastmod>2026-10-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+    </url>
+
+    <!-- 9. Student Portal & Dashboard -->
+    <url>
+        <loc>https://lycemit.com/dashboard.html</loc>
+        <lastmod>2026-10-31</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.90</priority>
+    </url>
+
+</urlset>
+

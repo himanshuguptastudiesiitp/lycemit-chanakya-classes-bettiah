@@ -1,0 +1,18 @@
+{
+  "name": "chanakya-classes-lycemit",
+  "version": "1.0.0",
+  "description": "Chanakya Classes by Manmit Sir & Lycemit Official Learning Platform",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node -e \"console.log('Production build completed for Vercel.')\"",
+    "validate": "python validate_project.py",
+    "test": "python -m unittest discover -s lycemit_ai_mitra/tests"
+  },
+  "dependencies": {
+    "svix": "^1.42.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
