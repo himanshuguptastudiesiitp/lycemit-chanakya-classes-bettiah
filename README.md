@@ -4,6 +4,11 @@
 
 ---
 
+## Live Website
+
+- **Main Site:** https://lycemit-chanakya-classes-bettiah.vercel.app
+- **Dashboard (After Login):** https://lycemit-chanakya-classes-bettiah.vercel.app/dashboard
+
 > **English** ・ A modern, responsive, modular web portal for **Chanakya Classes** (Bettiah, Bihar) and **LYCEMIT Online Education**, led by **Manmit Shrivastva (@msmanmit)**. Available both as a full unified single-page portal (`index.html`) and as standalone, dedicated categorized web pages in `sections/` with modular CSS (`shared/styles.css`) and JavaScript (`js/shared.js`).
 >
 > **हिन्दी** ・ **चाणक्य क्लासेज** (बेतिया, बिहार) और **लाइसमिट ऑनलाइन एजुकेशन** का आधुनिक, रेस्पॉन्सिव और मॉड्यूलर वेब पोर्टल, जिसका नेतृत्व **मनमीत श्रीवास्तव (@msmanmit)** करते हैं। यह पूर्ण एकीकृत पोर्टल (`index.html`) तथा `sections/` में अलग-अलग स्वतंत्र वर्गीकृत पेजों, मॉड्यूलर CSS (`shared/styles.css`) और जावास्क्रिप्ट (`js/shared.js`) के साथ उपलब्ध है।
